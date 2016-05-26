@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,28 +12,25 @@
 </head>
 <body>
 <div class="container">
-  <h2>Products</h2>
-  <a href="addProduct.html" class="btn btn-default">ADdD</a>
- <c:if test="${not empty message}">
-		<div style="color: red">${message}</div>
-	</c:if>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Product Name</th>
-        <th>Date Created</th>
-      </tr>
-    </thead>
-     <c:if test="${productList !=null}">
-     <c:forEach items="${productList}" var="product">
-     <tr>
-     <td>${product.getProductName()}</td>
-     <td>${product.getRowCreated()}</td>
-     </tr>
-     </c:forEach>
-     </c:if> 
-    </tbody>
-  </table>
+<form class="form-horizontal"  method="POST">
+  <fieldset>
+    <div id="legend">
+      <legend class="" align=""><center>Add Product</center></legend>
+    </div>
+    <div class="control-group">
+      <label path="name" class="control-label">Product</label>
+      <div class="controls">
+        <input type="text" name="productName">
+      </div>
+    </div><br>
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
 </div>
 </body>
 </html>
