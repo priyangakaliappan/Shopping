@@ -22,13 +22,6 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
-	@RequestMapping(value="/admin", method=RequestMethod.GET)
-	public String signup(Model model) {
-		Student student = new Student();
-		//model.addAttribute("student", student);
-		return "admin";
-	}
-	
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signup(@ModelAttribute("student") Student student, Model model) {
 		if(studentService.getStudentByUserName(student.getUserName())) {
