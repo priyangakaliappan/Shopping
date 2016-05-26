@@ -30,7 +30,8 @@ body {
 			</form>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="signup.html">Signup</a></li>
+				<li><a href="admin.html">Admin</a></li>
+				<!-- <li><a href="signup.html">Signup</a></li>
 				<li><a href="login.html">Login</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Explore<b class="caret"></b></a>
@@ -38,7 +39,7 @@ body {
 						<li><a href="#">Contact us</a></li>
 						<li class="divider"></li>
 						<li><a href="#">Further Actions</a></li>
-					</ul></li>
+					</ul></li> -->
 			</ul>
 		</div>
 		<!-- /.nav-collapse -->
