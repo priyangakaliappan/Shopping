@@ -25,7 +25,7 @@ public interface StudentMapper {
 	public Student getStudentByUserName(String userName);
 
 
-	@Select("SELECT PRODUCTNAME as productName,PRODUCT_ID as productId,IS_ACTIVE as isActive,ROW_CREATED as rowCreated FROM product")
+	@Select("SELECT PRODUCT_NAME as productName,PRODUCT_ID as productId,IS_ACTIVE as isActive,ROW_CREATED as rowCreated FROM product")
 	public List<Product> productsList();
 
 }

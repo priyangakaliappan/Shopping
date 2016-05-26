@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public void insertProduct(Product product) {
 		// TODO Auto-generated method stub
-		productMapper.insertStudent(product);
+		productMapper.insertProduct(product);
 	}
 
 

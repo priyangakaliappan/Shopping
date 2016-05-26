@@ -12,17 +12,24 @@
 </head>
 <body>
 <div class="container">
-<form class="form-horizontal"  method="POST">
+<form class="form-horizontal"  method="POST" enctype="multipart/form-data">
   <fieldset>
     <div id="legend">
       <legend class="" align=""><center>Add Product</center></legend>
     </div>
     <div class="control-group">
-      <label path="name" class="control-label">Product</label>
+      <label class="control-label">Product</label>
       <div class="controls">
-        <input type="text" name="productName">
+        <input type="text" name="productName" required>
       </div>
     </div><br>
+     <div class="control-group">
+      <label  class="control-label" >Upload Image</label>
+      <div class="controls">
+        <input type="file" name="imageFile" required>
+      </div>
+    </div><br>
+    
     <div class="control-group">
       <!-- Button -->
       <div class="controls">

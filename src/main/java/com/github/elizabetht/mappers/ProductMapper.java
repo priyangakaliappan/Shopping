@@ -11,9 +11,9 @@ import com.github.elizabetht.model.Product;
 public interface ProductMapper {
 
 	
-	@Insert("INSERT INTO product(product_name, is_active, row_created) VALUES(#{productName},#{isActive},#{rowCreated})")
+	@Insert("INSERT INTO product(product_name, is_active, row_created,image) VALUES(#{productName},#{isActive},#{rowCreated},#{image})")
 	@Options(useGeneratedKeys=true, keyProperty="productId", flushCache=true, keyColumn="product_id")
-	public void insertStudent(Product product);
+	public void insertProduct(Product product);
 
 	
 	@Select("SELECT PRODUCT_NAME as productName, ROW_CREATED as rowCreated FROM product")

@@ -38,7 +38,11 @@
 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 	<constructor-arg index="0" ref="sqlSessionFactory" />
 </bean>
-
+ <bean id="multipartResolver"
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<!-- setting maximum upload size -->
+	<property name="maxUploadSize" value="100000" />
+</bean>
 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	<property name="basePackage" value="com.github.elizabetht.mappers" />
 </bean>

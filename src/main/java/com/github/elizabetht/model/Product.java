@@ -6,6 +6,7 @@ public class Product {
 
 private int productId;
 private String productName;
+private String image;
 private short isActive;
 private Date rowCreated;
 
@@ -20,6 +21,13 @@ public String getProductName() {
 }
 public void setProductName(String productName) {
 	this.productName = productName;
+}
+
+public String getImage() {
+	return image;
+}
+public void setImage(String image) {
+	this.image = image;
 }
 public short getIsActive() {
 	return isActive;
