@@ -1,10 +1,13 @@
 package com.github.elizabetht.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.elizabetht.mappers.StudentMapper;
+import com.github.elizabetht.model.Product;
 import com.github.elizabetht.model.Student;
 
 @Service("studentService")
@@ -36,6 +39,13 @@ public class StudentServiceImpl implements StudentService {
 		}
 		
 		return false;
+	}
+
+	public List<Product> allProducts() {
+		System.out.println("PRODUCT impl:::::::::::::::::::::");
+		List<Product> ss = studentMapper.productsList();
+		System.out.println("SUCCESSSSSSSSSSSSSSSSSSSSSSSS"+ss);
+		return ss;
 	}
 
 }

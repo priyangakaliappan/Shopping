@@ -1,9 +1,13 @@
 package com.github.elizabetht.mappers;
 
+
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
+import com.github.elizabetht.model.Product;
 import com.github.elizabetht.model.Student;
 
 public interface StudentMapper {
@@ -20,5 +24,8 @@ public interface StudentMapper {
 			+ "FROM student WHERE userName = #{userName}")
 	public Student getStudentByUserName(String userName);
 
+
+	@Select("SELECT PRODUCTNAME as productName,PRODUCT_ID as productId,IS_ACTIVE as isActive,ROW_CREATED as rowCreated FROM product")
+	public List<Product> productsList();
 
 }

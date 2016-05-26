@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <link href="assets/css/bootstrap-united.css" rel="stylesheet" />
@@ -10,6 +12,11 @@ body {
 	background-size: 1440px 800px;
 	background-repeat: no-repeat;
 	display: compact;
+}
+
+.jumbo{
+height: 725px;
+overflow: scroll;
 }
 </style>
 </head>
@@ -31,30 +38,33 @@ body {
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="#">Home</a></li>
 				<li><a href="admin.html">Admin</a></li>
-				<!-- <li><a href="signup.html">Signup</a></li>
-				<li><a href="login.html">Login</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Explore<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Contact us</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Further Actions</a></li>
-					</ul></li> -->
+				
 			</ul>
 		</div>
 		<!-- /.nav-collapse -->
 	</div>
-	<div class="container">
-		<div class="jumbotron">
+	<div class="container test">
+		<div class="jumbotron jumbo">
+			<h2>Welcome to Online SHOPPING!</h2>
+			
 			<div>
-				<h1>Welcome to Online Student Enrollment!</h1>
-				<p>To get started, you need to enter your details to enroll with
-					us. Or login to access your details, if you are already enrolled.</p>
+			<c:choose>
+			<c:when test="${productList!=null}">
+			<c:forEach var="i" items="${productList}">
+			
+   			<div class="col-sm-4" >
+   			<figure>
+  			<img src="assets/img/phones.png" alt="The Pulpit Rock" width="304" height="228">
+  			<figcaption>Fig.. ${i.getProductId()} - ${i.getProductName()}</figcaption>
+			</figure>
 			</div>
-
-			<a class="btn btn-primary" href="signup.html">Signup » </a> <a
-				class="btn btn-primary" href="login.html">Login » </a>
-				<a class="btn btn-primary" href="products.html">products » </a>
+			</c:forEach>
+			</c:when>
+					 <c:otherwise>
+			No results found!....
+			</c:otherwise>
+			</c:choose>
+			</div>
 		</div>
 
 		<div></div>
