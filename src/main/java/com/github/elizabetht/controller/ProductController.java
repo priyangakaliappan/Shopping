@@ -46,7 +46,7 @@ public class ProductController {
 		if (!imageFile.isEmpty()) {
             try {
                 byte[] bytes = imageFile.getBytes();
-                File dir = new File(servletContext.getRealPath("/WEB-INF/myDIR/"));
+                File dir = new File(servletContext.getRealPath("/webapp/product/"));
                 if (!dir.exists())
                     dir.mkdirs();
                 // Create the file on server
