@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Shopping</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" href="assets/css/jquery.countdownTimer.css">
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -35,13 +35,63 @@
      <td>${tender.getProductName()}</td>
      <td> ${tender.getQuantity()} </td>
      <td>${tender.getCloseTime()} </td>
-     <td>&nbsp; </td>
+     <td id="date">&nbsp; </td>
      <td>${tender.getRowCreated()} </td>
      </tr>
       </c:forEach>
-     </c:if>  
+     </c:if> 
+      
     </tbody>
   </table>
+  <div id="future_date"><span id="future_date">scszdc<span></div>
 </div>
+<script src="bootstrap/js/bootstrap.js">
+</script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js">
+</script>
+<script src="assets/js/jquery.countdownTimer.js">
+
+</script>
+
+<!-- <script type="text/javascript">
+$("document").ready(function(){
+	 //setInterval(function(){ timerCalc() }, 3000);
+	
+	
+	
+	
+	//function timerCalc(){}
+	
+	var start_actual_time  =  "01/17/2012 11:20:22";
+	var end_actual_time    =  "01/18/2012 12:25:26";
+
+	start_actual_time = new Date(start_actual_time);
+	end_actual_time = new Date(end_actual_time);
+
+	var diff = end_actual_time - start_actual_time;
+
+	var diffSeconds = diff/1000;
+	var HH = Math.floor(diffSeconds/3600);
+	var MM = Math.floor(diffSeconds%3600)/60;
+	//var ss = Math.floor((diffSeconds%3600)/60)/60;
+	var formatted = ((HH < 10)?("0" + HH):HH) + ":" + ((MM < 10)?("0" + MM):MM)
+	//alert(formatted);
+	
+});
+</script> -->
+<script type="text/javascript">
+$("document").ready(function(){
+	alert("Hao")
+	$(function(){
+		$("#date").countdowntimer({
+            dateAndTime : "2018/01/01 00:00:00",
+            size : "lg", 
+            regexpMatchFormat: "([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})", 
+            regexpReplaceWith: "$1<sup>days</sup> / $2<sup>hours</sup> / $3<sup>minutes</sup> / $4<sup>seconds</sup>"
+});
+	});
+});
+
+</script>
 </body>
 </html>
