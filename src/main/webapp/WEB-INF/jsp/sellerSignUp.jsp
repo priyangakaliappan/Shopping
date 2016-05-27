@@ -91,7 +91,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6">
-						<form:form id="myForm" method="post"
+						<form:form id="myForm" method="post" action="sellerSignup.html"
 							class="bs-example form-horizontal" modelAttribute="sellers">
 							<fieldset>
 								<legend>Seller Signup Form</legend>
