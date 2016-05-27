@@ -20,28 +20,21 @@ public class SellerController {
 	
 	@RequestMapping(value="/sellerLogin", method=RequestMethod.GET)
 	public String signIn(Model model) {
-		System.out.println("SELLER PAGE::::::::::::::::::::::");
-
+		model.addAttribute("sellerCredential", new Seller()); 
 		return "sellerLogin";
 	}
 	
 	
 	
-	/*@RequestMapping(value="/sellerLogin", method=RequestMethod.POST)
-	public String login(@ModelAttribute("seller")Seller seller, 
+	@RequestMapping(value="/sellerLogin", method=RequestMethod.POST)
+	public String login(@ModelAttribute("sellerCredential")Seller sellerCredential, 
 		      BindingResult result, Model model) {
-		System.out.println("HAIIIIIIIIIIIIIIIIIIIIII");
-		if (result.hasErrors()) {
-			System.out.println("ERRRR");
-            return "error";
-        }
-       System.out.println("************* "+seller.getAddress());
+		Seller seller = productService.login(sellerCredential);
         return "sellerLogin";
-	}*/
+	}
 	
 	@RequestMapping(value="/sellerSignup", method=RequestMethod.GET)
 	public String signUp(Model model) {
-		System.out.println("SELLER PAGE:::::::::::dszcszdcv:::::::::::");
 		model.addAttribute("sellers", new Seller()); 
 		return "sellerSignUp";
 	}
@@ -49,13 +42,7 @@ public class SellerController {
 	@RequestMapping(value="/sellerSignup", method=RequestMethod.POST)
 	public String addSeller(@ModelAttribute("seller")Seller seller, 
 		      BindingResult result, Model model) {
-		System.out.println("SELLER PAGE POST::::::::::::::::::::::");
-		
 		productService.addSeller(seller);
-		
-		System.out.println("SUCCESSSSSSS final");
-		
-		
 		model.addAttribute("sellers", new Seller()); 
 		return "sellerLogin";
 	}

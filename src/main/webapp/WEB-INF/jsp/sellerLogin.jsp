@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -63,15 +66,16 @@
 </head>
 <body>
 	<div class="wrapper">
-    <form class="form-signin" th:object="${greeting}" method="post">       
+			<form:form id="myForm" method="post"
+							class="form-signin" modelAttribute="sellerCredential">
       <h2 class="form-signin-heading">Please Login</h2>
-      <input type="text" class="form-control" th:field="*{image}" placeholder="Username" required="" autofocus="" /><br>
-      <input type="password" class="form-control" th:field="*{content}" placeholder="Password" required=""/>      
+      <form:input type="text" class="form-control" path="userName" id="userNameInput" placeholder="User Name" /><br>
+	<form:input type="text" class="form-control" path="password" id="passwordInput" placeholder="Password" />
      <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
         <br>
       	Not a member yet? Join today.<a href="sellerSignup.html">SignUp</a>
-    </form>
+    </form:form>
   </div>
 </body>
 </html>

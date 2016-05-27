@@ -48,10 +48,16 @@ public class ProductServiceImpl implements ProductService {
 
 
 	public void addSeller(Seller seller) {
-		System.out.println("SELLER IMPL::::::::::::");
 		productMapper.addSeller(seller);
 		System.out.println("SUCCESSSSS");
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public Seller login(Seller seller) {
+		System.out.println("SELLER IMPL::::::::::::");
+		Seller getSeller = productMapper.login(seller);
+		return getSeller;
 	}
 }
