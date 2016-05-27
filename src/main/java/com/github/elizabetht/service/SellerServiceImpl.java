@@ -3,12 +3,15 @@
  */
 package com.github.elizabetht.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.elizabetht.mappers.SellerMapper;
 import com.github.elizabetht.model.Seller;
+import com.github.elizabetht.model.Tender;
 
 /**
  * @author pragis
@@ -38,6 +41,14 @@ public class SellerServiceImpl implements SellerService {
 		System.out.println("SELLER IMPL::::::::::::");
 		Seller getSeller = sellerMapper.login(seller);
 		return getSeller;
+	}
+
+	public List<Tender> getAll() {
+		// TODO Auto-generated method stub
+		System.out.println("IMPL:::::::::::");
+		List<Tender> getAllList = sellerMapper.tendersList();
+		System.out.println("getAllList "+getAllList);
+		return getAllList;
 	}
 
 }

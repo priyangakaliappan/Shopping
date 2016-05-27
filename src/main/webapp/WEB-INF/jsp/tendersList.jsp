@@ -20,19 +20,26 @@
   <table class="table table-striped">
     <thead>
       <tr>
+      <th>Buyer Name</th>
         <th>Product Name</th>
-        
+        <th>Quantity</th>
+        <th>Closing Date</th>
+        <th>Time remains</th>
         <th>Date Created</th>
       </tr>
     </thead>
-    <%--  <c:if test="${productList !=null}">
-     <c:forEach items="${productList}" var="product"> --%>
+      <c:if test="${tendersList !=null}">
+     <c:forEach items="${tendersList}" var="tender"> 
      <tr>
-     <td>ss</td>
-     <td>aa</td>
+     <td> ${tender.getBuyerFk()} </td>
+     <td>${tender.getProductName()}</td>
+     <td> ${tender.getQuantity()} </td>
+     <td>${tender.getCloseTime()} </td>
+     <td>&nbsp; </td>
+     <td>${tender.getRowCreated()} </td>
      </tr>
-     <%-- </c:forEach>
-     </c:if>  --%>
+      </c:forEach>
+     </c:if>  
     </tbody>
   </table>
 </div>
