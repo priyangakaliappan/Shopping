@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.github.elizabetht.model.Product;
@@ -51,17 +52,5 @@ public class StudentController {
 		}
 	}
 	
-	@RequestMapping(value="/products", method=RequestMethod.GET)
-	public String products(Model model) {
-		System.out.println("STUDENT CONTROLLER:::::::::::");
-		List<Product> x = studentService.allProducts();
-		for(int i=0;i<x.size();i++){
-			
-		}
-		
-		
-		System.out.println("FINAL:::: "+x);
-		model.addAttribute("productList",x);
-		return "products";
-	}
+	
 }

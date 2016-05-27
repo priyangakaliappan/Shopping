@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 
@@ -76,5 +77,20 @@ public class ProductController {
 	@RequestMapping(value="/addProduct", method=RequestMethod.GET)
 	public String insert() {
 		return "addProduct";
+	}
+	@RequestMapping(value="/products", method=RequestMethod.GET)
+	public String products(Model model) {
+		List<Product> productsList = productService.allProducts();
+		System.out.println("FINAL:::: "+productsList);
+		model.addAttribute("productList",productsList);
+		return "products";
+	}
+	@RequestMapping(value="/addToCart", method=RequestMethod.GET)
+	public String addToCart(Model model,@RequestParam("id")String productId) {
+		System.out.println("ADD TO  CART::::::: "+productId);
+		Integer intt = Integer.parseInt(productId);
+		Product product = productService.getProductById(intt);
+		System.out.println("FINAL::::::: "+product);
+		return "products";
 	}
 }

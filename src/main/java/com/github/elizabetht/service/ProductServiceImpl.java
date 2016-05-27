@@ -1,6 +1,7 @@
 package com.github.elizabetht.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,18 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		ArrayList<Product> productList = productMapper.getProductList();
 		return productList;
+	}
+	public List<Product> allProducts() {
+		System.out.println("PRODUCT impl:::::::::::::::::::::");
+		List<Product> ss = productMapper.productsList();
+		System.out.println("SUCCESSSSSSSSSSSSSSSSSSSSSSSS"+ss);
+		return ss;
+	}
+
+	public Product getProductById(int productId) {
+		System.out.println("STUDENT IMPL:::::::::::: "+productId);
+		Product product = productMapper.getProductById(productId);
+		System.out.println("PRODUCT:::::::::::::::::::::: "+product);
+		return product;
 	}
 }

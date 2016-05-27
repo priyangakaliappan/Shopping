@@ -45,7 +45,7 @@ overflow: scroll;
 	</div>
 	<div class="container test">
 		<div class="jumbotron jumbo">
-			<h2>Welcome to Online SHOPPING!</h2>
+			<h2 style="text-align: center;">Welcome to Online SHOPPING!</h2>
 			
 			<div>
 			<c:choose>
@@ -54,13 +54,15 @@ overflow: scroll;
 			
    			<div class="col-sm-4" >
    			<figure>
-  			<img src="assets/img/phones.png" alt="The Pulpit Rock" width="304" height="228">
+  			<img src="webapp/product/${i.getImage()}" alt="The Pulpit Rock" width="304" height="228">
   			<figcaption>Fig.. ${i.getProductId()} - ${i.getProductName()}</figcaption>
+  			
 			</figure>
+			 <a href="addToCart.html?id=${i.getProductId()}"><img alt="ss" src="assets/img/shop3.jpg" style="width: 167px;height: 40px;"></a>
 			</div>
 			</c:forEach>
 			</c:when>
-					 <c:otherwise>
+			<c:otherwise>
 			No results found!....
 			</c:otherwise>
 			</c:choose>

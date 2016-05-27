@@ -41,11 +41,6 @@ public class StudentServiceImpl implements StudentService {
 		return false;
 	}
 
-	public List<Product> allProducts() {
-		System.out.println("PRODUCT impl:::::::::::::::::::::");
-		List<Product> ss = studentMapper.productsList();
-		System.out.println("SUCCESSSSSSSSSSSSSSSSSSSSSSSS"+ss);
-		return ss;
-	}
+	
 
 }
