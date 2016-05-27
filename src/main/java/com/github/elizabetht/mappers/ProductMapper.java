@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import com.github.elizabetht.model.Product;
+import com.github.elizabetht.model.Seller;
 
 public interface ProductMapper {
 
@@ -25,5 +26,9 @@ public interface ProductMapper {
 	
 	@Select("SELECT PRODUCT_NAME as productName,PRODUCT_ID as productId,IS_ACTIVE as isActive,ROW_CREATED as rowCreated,IMAGE as image FROM product WHERE PRODUCT_ID = #{productId}")
 	public Product getProductById(int productId);
+	
+	@Insert("INSERT INTO seller(user_name, password, first_name,last_name,email_address,phone_number,is_active,row_created,address) VALUES(#{userName},#{password},#{firstName},#{lastName},#{email},#{phoneNumber},#{isActive},#{rowCreated},#{address})")
+	@Options(useGeneratedKeys=true, keyProperty="sellerId", flushCache=true, keyColumn="seller_id")
+	public void addSeller(Seller seller);
 
 }

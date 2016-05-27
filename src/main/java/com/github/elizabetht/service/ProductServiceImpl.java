@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.elizabetht.mappers.ProductMapper;
 import com.github.elizabetht.mappers.StudentMapper;
 import com.github.elizabetht.model.Product;
+import com.github.elizabetht.model.Seller;
 import com.github.elizabetht.model.Student;
 
 @Service("productService")
@@ -43,5 +44,14 @@ public class ProductServiceImpl implements ProductService {
 		Product product = productMapper.getProductById(productId);
 		System.out.println("PRODUCT:::::::::::::::::::::: "+product);
 		return product;
+	}
+
+
+	public void addSeller(Seller seller) {
+		System.out.println("SELLER IMPL::::::::::::");
+		productMapper.addSeller(seller);
+		System.out.println("SUCCESSSSS");
+		// TODO Auto-generated method stub
+		
 	}
 }
