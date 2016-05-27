@@ -13,7 +13,7 @@
 <body>
 <div class="container">
   <h2>Products</h2>
-  <a href="addProduct.html" class="btn btn-default">ADDd</a>
+  <a href="addProduct.html" class="btn btn-default">ADD</a>
    
  <c:if test="${not empty message}">
 		<div style="color: red">${message}</div>
