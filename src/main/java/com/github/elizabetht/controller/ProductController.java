@@ -8,6 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +29,7 @@ import com.github.elizabetht.service.ProductService;
 import com.github.elizabetht.service.StudentService;
 
 @Controller
-public class ProductController {
+public class ProductController extends HttpServlet{
 	
 	@Autowired
 	private StudentService studentService;
@@ -34,12 +40,16 @@ public class ProductController {
 	@Autowired
 	ServletContext servletContext;
 	
+	private ArrayList<Product> added = new ArrayList<Product>();
+	
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
 	public String admin(Model model) {
 		ArrayList<Product> productList = productService.getAllList();
 		model.addAttribute("productList", productList);
 		return "admin";
 	}
+	
+	
 	
 	@RequestMapping(value="/addProduct", method=RequestMethod.POST)
 	public String insert(@RequestParam("productName") String productName,@RequestParam("imageFile") MultipartFile imageFile,Model model, RedirectAttributes redirectAttributes) {
@@ -86,11 +96,14 @@ public class ProductController {
 		return "products";
 	}
 	@RequestMapping(value="/addToCart", method=RequestMethod.GET)
-	public String addToCart(Model model,@RequestParam("id")String productId) {
+	public String addToCart(Model model,@RequestParam("id")String productId,HttpServletRequest request,HttpSession session) {
 		System.out.println("ADD TO  CART::::::: "+productId);
 		Integer intt = Integer.parseInt(productId);
 		Product product = productService.getProductById(intt);
+		added.add(product);
+		 session=request.getSession(true); 
+		session.setAttribute("list",added);  
 		System.out.println("FINAL::::::: "+product);
-		return "products";
+		return "addCart";
 	}
 }

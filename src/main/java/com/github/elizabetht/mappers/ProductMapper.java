@@ -23,7 +23,7 @@ public interface ProductMapper {
 	@Select("SELECT PRODUCT_NAME as productName,PRODUCT_ID as productId,IS_ACTIVE as isActive,ROW_CREATED as rowCreated,IMAGE as image FROM product")
 	public List<Product> productsList();
 	
-	@Select("SELECT PRODUCT_NAME as productName,PRODUCT_ID as productId,IS_ACTIVE as isActive,ROW_CREATED as rowCreated FROM product WHERE PRODUCT_ID = #{productId}")
+	@Select("SELECT PRODUCT_NAME as productName,PRODUCT_ID as productId,IS_ACTIVE as isActive,ROW_CREATED as rowCreated,IMAGE as image FROM product WHERE PRODUCT_ID = #{productId}")
 	public Product getProductById(int productId);
 
 }
