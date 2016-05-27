@@ -34,7 +34,7 @@ public class SellerController {
 	public String login(@ModelAttribute("sellerCredential")Seller sellerCredential, 
 		      BindingResult result, Model model) {
 		Seller seller = sellerService.login(sellerCredential);
-        return "sellerLogin";
+        return "tendersList";
 	}
 	
 	@RequestMapping(value="/sellerSignup", method=RequestMethod.GET)
@@ -50,6 +50,8 @@ public class SellerController {
 		model.addAttribute("sellerCredential", new Seller()); 
 		return "sellerLogin";
 	}
+	
+	
 	
 
 }
