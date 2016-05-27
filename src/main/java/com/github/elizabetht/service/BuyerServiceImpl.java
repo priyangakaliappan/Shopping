@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.elizabetht.mappers.BuyerMapper;
 import com.github.elizabetht.model.Buyer;
 import com.github.elizabetht.model.Product;
+import com.github.elizabetht.model.Tender;
 
 @Service("buyerService")
 public class BuyerServiceImpl implements BuyerService{
@@ -25,6 +26,13 @@ public class BuyerServiceImpl implements BuyerService{
 		Buyer validate = buyerMapper.login(buyer);
 		return validate;
 		
+	}
+	
+	@Transactional
+	public void reqTender(Tender tender) {
+		// TODO Auto-generated method stub
+		
+		buyerMapper.addTender(tender);
 	}
 	
 	
