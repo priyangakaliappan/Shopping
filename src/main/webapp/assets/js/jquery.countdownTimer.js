@@ -7,7 +7,6 @@
  */
 
 (function ($) {
-alert("query")
     $.fn.countdowntimer = function (options) {
         return this.each(function () {
             countdown($(this), options);

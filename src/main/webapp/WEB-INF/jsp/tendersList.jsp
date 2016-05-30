@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +11,34 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" href="assets/css/jquery.countdownTimer.css"> -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="bootstrap/js/bootstrap.js">
+</script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js">
+</script>
+<script src="assets/js/jquery.countdownTimer.js">
+
+</script>
+  
+  
+  
+  
+  <script type="text/javascript">
+  function doSomething(ids,dates){
+	alert("sss::::::::::");
+	$(function(){
+		$("#"+ids).countdowntimer({
+            dateAndTime : $("."+ids).html(),
+            size : "lg", 
+            regexpMatchFormat: "([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})", 
+            regexpReplaceWith: "$1<sup>days</sup> / $2<sup>hours</sup> / $3<sup>minutes</sup> / $4<sup>seconds</sup>"
+});
+	});
+}
+
+</script>
+  
+  
+  
 </head>
 <body>
 <div class="container">
@@ -35,12 +65,14 @@
      <tr>
      <td> ${tender.getBuyerFk()} </td>
      <td>${tender.getProductName()}</td>
-     <td> ${tender.getQuantity()} </td>
-     <td>${tender.getCloseTime()} </td>
-     <td id="date">&nbsp; </td>
+     <td> ${tender.getQuantity()} </td>  
+     <td class="${tender.getTenderId()}"><fmt:formatDate pattern="yyyy/MM/dd hh:mm:ss" value="${tender.getCloseTime()}" /></td>
+     <td><span id="${tender.getTenderId()}"></span>
+     </td>
      <td>${tender.getRowCreated()} </td>
      <td><a href="quotation.html?tenderId=${tender.getTenderId()}">Apply</a></td>
      </tr>
+       <script>doSomething('${tender.getTenderId()}','${tender.getCloseTime()}');</script>
       </c:forEach>
      </c:when> 
      <c:otherwise>
@@ -53,13 +85,7 @@
   </table>
   <div id="future_date"><span id="future_date">scszdc<span></div>
 </div>
-<script src="bootstrap/js/bootstrap.js">
-</script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js">
-</script>
-<script src="assets/js/jquery.countdownTimer.js">
 
-</script>
 
 <!-- <script type="text/javascript">
 $("document").ready(function(){
@@ -87,19 +113,6 @@ $("document").ready(function(){
 	
 });
 </script> -->
-<script type="text/javascript">
-$("document").ready(function(){
-	alert("Hao")
-	$(function(){
-		$("#date").countdowntimer({
-            dateAndTime : "2018/01/01 00:00:00",
-            size : "lg", 
-            regexpMatchFormat: "([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})", 
-            regexpReplaceWith: "$1<sup>days</sup> / $2<sup>hours</sup> / $3<sup>minutes</sup> / $4<sup>seconds</sup>"
-});
-	});
-});
 
-</script>
 </body>
 </html>
