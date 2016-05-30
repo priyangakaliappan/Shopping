@@ -1,5 +1,6 @@
 package com.github.elizabetht.mappers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -19,5 +20,7 @@ public interface SellerMapper {
 	
 	@Select("SELECT PRODUCT_NAME as productName,BUYER_FK as buyerFk,TENDER_ID as tenderId,REFERENCE_NO as referenceNo,PRODUCT_DESCRIPTION as productDescription,START_TIME as startTime,CLOSE_TIME as closeTime,QUANTITY as quantity,IS_ACTIVE as isActive,ROW_CREATED as rowCreated FROM tender")
 	public List<Tender> tendersList();
-
+	
+	@Select("SELECT EMAIL_ADDRESS as email FROM seller")
+	public ArrayList<Seller> getAllSellers();
 }

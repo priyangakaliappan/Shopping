@@ -3,6 +3,7 @@
  */
 package com.github.elizabetht.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,12 @@ public class SellerServiceImpl implements SellerService {
 		List<Tender> getAllList = sellerMapper.tendersList();
 		System.out.println("getAllList "+getAllList);
 		return getAllList;
+	}
+	
+	public ArrayList<Seller> getAllSellers() {
+		// TODO Auto-generated method stub
+		ArrayList<Seller> list = sellerMapper.getAllSellers();
+		return list;
 	}
 
 }

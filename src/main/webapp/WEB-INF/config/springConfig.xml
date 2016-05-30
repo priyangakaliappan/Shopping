@@ -38,6 +38,22 @@
 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 	<constructor-arg index="0" ref="sqlSessionFactory" />
 </bean>
+
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+<property name="host" value="smtp.gmail.com" />
+<property name="port" value="587" />
+<property name="username" value="becsepriyanga@gmail.com" />
+<property name="password" value="Priya$Cse" />
+<property name="javaMailProperties">
+<props>
+<prop key="mail.transport.protocol">smtp</prop>
+<prop key="mail.smtp.auth">true</prop>
+<prop key="mail.smtp.starttls.enable">true</prop>
+</props>
+</property>
+</bean>
+
+
  <bean id="multipartResolver"
 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	<!-- setting maximum upload size -->
@@ -51,5 +67,5 @@
 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	<property name="dataSource" ref="dataSource" />
 </bean>
-
+	
 </beans>
