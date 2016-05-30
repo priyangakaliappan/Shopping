@@ -24,7 +24,6 @@
   
   <script type="text/javascript">
   function doSomething(ids,dates){
-	alert("sss::::::::::");
 	$(function(){
 		$("#"+ids).countdowntimer({
             dateAndTime : $("."+ids).html(),
