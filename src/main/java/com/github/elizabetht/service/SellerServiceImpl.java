@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.elizabetht.mappers.SellerMapper;
 import com.github.elizabetht.model.Seller;
 import com.github.elizabetht.model.Tender;
+import com.github.elizabetht.model.TenderQuotation;
 
 /**
  * @author pragis
@@ -24,20 +25,12 @@ public class SellerServiceImpl implements SellerService {
 	@Autowired
 	private SellerMapper sellerMapper;
 
-	/* (non-Javadoc)
-	 * @see com.github.elizabetht.service.SellerService#addSeller(com.github.elizabetht.model.Seller)
-	 */
 	@Transactional
 	public void addSeller(Seller seller) {
 		sellerMapper.addSeller(seller);
 		System.out.println("SUCCESSSSS");
-		// TODO Auto-generated method stub
 
 	}
-
-	/* (non-Javadoc)
-	 * @see com.github.elizabetht.service.SellerService#login(com.github.elizabetht.model.Seller)
-	 */
 	public Seller login(Seller seller) {
 		System.out.println("SELLER IMPL::::::::::::");
 		Seller getSeller = sellerMapper.login(seller);
@@ -45,7 +38,6 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	public List<Tender> getAll() {
-		// TODO Auto-generated method stub
 		System.out.println("IMPL:::::::::::");
 		List<Tender> getAllList = sellerMapper.tendersList();
 		System.out.println("getAllList "+getAllList);
@@ -53,9 +45,19 @@ public class SellerServiceImpl implements SellerService {
 	}
 	
 	public ArrayList<Seller> getAllSellers() {
-		// TODO Auto-generated method stub
 		ArrayList<Seller> list = sellerMapper.getAllSellers();
 		return list;
+	}
+
+	public Tender getTender(int tenderId) {
+		Tender getTender = sellerMapper.getTender(tenderId);
+		System.out.println("GGG "+getTender);
+		return getTender;
+	}
+
+	public void submitQuotation(TenderQuotation tenderQuotation) {
+		sellerMapper.submitQuotation(tenderQuotation);
+		
 	}
 
 }

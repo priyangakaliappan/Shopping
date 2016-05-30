@@ -2,6 +2,7 @@ package com.github.elizabetht.model;
 
 import java.util.Date;
 
+
 public class Seller {
 	private int sellerId;
 	private String userName;

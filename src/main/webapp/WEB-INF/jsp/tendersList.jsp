@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Shopping</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/jquery.countdownTimer.css">
+<!-- <link rel="stylesheet" href="assets/css/jquery.countdownTimer.css"> -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -26,9 +26,11 @@
         <th>Closing Date</th>
         <th>Time remains</th>
         <th>Date Created</th>
+        <th>Apply</th>
       </tr>
     </thead>
-      <c:if test="${tendersList !=null}">
+    <c:choose>
+      <c:when test="${tendersList !=null}">
      <c:forEach items="${tendersList}" var="tender"> 
      <tr>
      <td> ${tender.getBuyerFk()} </td>
@@ -37,10 +39,16 @@
      <td>${tender.getCloseTime()} </td>
      <td id="date">&nbsp; </td>
      <td>${tender.getRowCreated()} </td>
+     <td><a href="quotation.html?tenderId=${tender.getTenderId()}">Apply</a></td>
      </tr>
       </c:forEach>
-     </c:if> 
-      
+     </c:when> 
+     <c:otherwise>
+     <tr>
+     <td colspan="7">No results found</td>
+     </tr>
+     </c:otherwise>
+      </c:choose>
     </tbody>
   </table>
   <div id="future_date"><span id="future_date">scszdc<span></div>

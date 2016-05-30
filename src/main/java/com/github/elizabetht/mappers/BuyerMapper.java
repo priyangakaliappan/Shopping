@@ -19,5 +19,8 @@ public interface BuyerMapper {
 	@Insert("INSERT INTO tender(reference_no, product_name, product_description, quantity, start_time, close_time, is_active, row_created, buyer_fk) VALUES(#{referenceNo},#{productName},#{productDescription},#{quantity},#{startTime},#{closeTime},#{isActive},#{rowCreated},#{buyerFk})")
 	@Options(useGeneratedKeys=true, keyProperty="tenderId", flushCache=true, keyColumn="tender_id")
 	public void addTender(Tender tender);
+	
+	@Select("SELECT BUYER_ID as buyerId, FIRSTNAME as firstname, LASTNAME as lastname, EMAIL_ADDRESS as email FROM buyer WHERE BUYER_ID = #{buyerId}")
+	public Buyer getBuyer(int buyerId);
 
 }
