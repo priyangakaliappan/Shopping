@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -106,37 +106,30 @@ input[type="password"] {
 
 	<div class="wrapper">
 
-		<form id="myForm" method="post"
-			class="bs-example form-horizontal form-signin" commandName="student">
+		<form:form id="myForm" method="post"
+			class="bs-example form-horizontal form-signin" modelAttribute="tender">
 			<span style="color: red">${message}</span>
 			<h2 class="form-signin-heading" align="center">Register</h2>
-			<input type="text" class="form-control" name="referenceNo"
+			<form:input type="text" class="form-control" path="referenceNo"
 				placeholder="Reference No" required="" autofocus="" /><br> 
-			<input
-				type="text" class="form-control" name="productName"
+			<form:input
+				type="text" class="form-control" path="productName"
 				placeholder="Product Name" required="" /><br> 
-			<input
-				type="text" class="form-control" name="description"
+			<form:input
+				type="text" class="form-control" path="productDescription"
 				placeholder="Description" required="" /><br> 
-			<input
-				type="number" class="form-control" name="quantity"
+			<form:input
+				type="number" class="form-control" path="quantity"
 				placeholder="quantity" required="" /><br>
-			<div class="date form_date col-lg-9" data-date-format="mm/dd/yyyy"
-				data-date-viewmode="years">
+			<div class="date form_date col-lg-9" data-date-format="mm/dd/yyyy" data-date-viewmode="years" style="padding-left: 0px;width: 105%;">
 				<input type="text" class="form-control" id="closeDate"
-					name="closeTime" placeholder="Closing Time" required />
+					name="closeTime" placeholder="Closing Time" required="required">
 			</div>
+			<br><br>	
 			<br>
-			<br>
-			<button class="btn btn-lg btn-primary btn-block" type="submit"
-				onclick="return check()">Register</button>
-
-
-
-
-
-
-		</form>
+			<button class="btn btn-lg btn-primary" type="submit" onclick="return check()">Register</button>
+			<a href="tender.html" class="btn btn-lg btn-primary" >Cancel</a>
+		</form:form>
 
 	</div>
 	<script>

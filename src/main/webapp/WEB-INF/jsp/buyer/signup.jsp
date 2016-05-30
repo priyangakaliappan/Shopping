@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -64,21 +65,22 @@
 <body>
 	<div class="wrapper">
 	
-    <form class="form-signin" method="post">       
+    <form:form class="form-signin" method="post" modelAttribute="buyerDetails" >       
     <span style="color: red">${message}</span>
       <h2 class="form-signin-heading" align="center">Register</h2>
-      <input type="text" class="form-control" name="firstname" placeholder="First Name" required="" autofocus="" /><br>
-      <input type="text" class="form-control" name="lastname" placeholder="Last Name" required=""  /><br>
-      <input type="number" class="form-control" name="phone" placeholder="Phone Number" required=""  /><br>
-      <input type="email" class="form-control" name="email" placeholder="Email Address" required="" /><br>
-      <input type="text" class="form-control" name="address" placeholder="Address" required=""  /><br>
-      <input type="password" class="form-control" name="password" placeholder="Password" required="" id="password"/>      <br>
+      <form:input type="text" class="form-control" path="firstname" placeholder="First Name" required="" autofocus="" /><br>
+      <form:input type="text" class="form-control" path="lastname" placeholder="Last Name" required=""  /><br>
+      <form:input type="number" class="form-control" path="phoneNumber" placeholder="Phone Number" required=""  /><br>
+      <form:input type="email" class="form-control" path="email" placeholder="Email Address" required="" /><br>
+      <form:input type="text" class="form-control" path="address" placeholder="Address" required=""  /><br>
+      <form:input type="password" class="form-control" path="password" placeholder="Password" required="" id="password"/>      <br>
       <input type="password" class="form-control" name="confirmPassword" placeholder="confirmPassword" required="" id="confirmPassword"/>     
-     <br>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return check()">Register</button>   
-        <br>
+      <button class="btn btn-lg btn-primary" type="submit" onclick="return check()">Register</button>   
+        <a href="buyer.html" class="btn btn-lg btn-primary" >Cancel</a>   
+       
+        <br> <br>
       Already a member? Sign In<a href="buyer.html"> Login</a>
-    </form>
+    </form:form>
   </div>
   <script type="text/javascript">
   function check(){
