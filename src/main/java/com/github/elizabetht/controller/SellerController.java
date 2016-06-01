@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.elizabetht.mappers.BuyerMapper;
 import com.github.elizabetht.mappers.SellerMapper;
@@ -49,16 +50,22 @@ public class SellerController {
 	
 	@RequestMapping(value="/sellerLogin", method=RequestMethod.GET)
 	public String signIn(Model model) {
-		System.out.println("GETTTTTTTTTTTTTTTTTTTTTTTTTT");		
 		model.addAttribute("sellerCredential", new Seller()); 
 		return "sellerLogin";
 	}	
 	
 	@RequestMapping(value="/sellerLogin", method=RequestMethod.POST)
 	public String login(@ModelAttribute("sellerCredential")Seller sellerCredential, 
-		      BindingResult result, Model model) {
+		      BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 		Seller seller = sellerService.login(sellerCredential);
-		return "redirect:tenderList.html";
+		if(seller == null){
+			redirectAttributes.addFlashAttribute("message", "Invalid username/ password");
+			return "redirect:sellerLogin.html";
+		}
+		else{
+			return "redirect:tenderList.html";
+		}
+		
 	}
 	
 	@RequestMapping(value="/sellerSignup", method=RequestMethod.GET)

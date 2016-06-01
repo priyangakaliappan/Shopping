@@ -80,6 +80,7 @@
       <form:input type="text" class="form-control" path="userName" id="userNameInput" placeholder="User Name" /><br>
 	<form:input type="text" class="form-control" path="password" id="passwordInput" placeholder="Password" />
      <br>
+     <span style="color: red">${message}</span><br><br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
         <br>
       	Not a member yet? Join today.<a href="sellerSignup.html">SignUp</a>
