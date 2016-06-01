@@ -3,6 +3,8 @@ package com.github.elizabetht.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.elizabetht.mappers.BuyerMapper;
+import com.github.elizabetht.mappers.SellerMapper;
 import com.github.elizabetht.model.Buyer;
 import com.github.elizabetht.model.Seller;
 import com.github.elizabetht.model.Tender;
@@ -39,10 +42,14 @@ public class SellerController {
 	private BuyerMapper buyerMapper;
 	
 	@Autowired
+	private SellerMapper sellerMapper;
+	
+	@Autowired
 	private JavaMailSender mailSender;
 	
 	@RequestMapping(value="/sellerLogin", method=RequestMethod.GET)
 	public String signIn(Model model) {
+		System.out.println("GETTTTTTTTTTTTTTTTTTTTTTTTTT");		
 		model.addAttribute("sellerCredential", new Seller()); 
 		return "sellerLogin";
 	}	
@@ -64,28 +71,36 @@ public class SellerController {
 	public String addSeller(@ModelAttribute("seller")Seller seller, 
 		      BindingResult result, Model model) {
 		sellerService.addSeller(seller);
-		model.addAttribute("sellerCredential", new Seller()); 
-		return "sellerLogin";
+		return "redirect:sellerLogin.html";
 	}
 	
 	@RequestMapping(value="/tenderList", method=RequestMethod.GET)
-	public String viewTenders(Model model) {
+	public String viewTenders(Model model,HttpServletRequest request) {
 		List<Tender> allTenders = sellerService.getAll();
+		request.setAttribute("buyers", buyerMapper);
+		request.setAttribute("sellers", sellerMapper);
 		model.addAttribute("tendersList", allTenders);
 		return "tendersList";
 	}
 	@RequestMapping(value="/quotation", method=RequestMethod.GET)
 	public String quotation(Model model,@RequestParam("tenderId") String tenderId) {
-		model.addAttribute("tenderQuotation", new TenderQuotation()); 
+		model.addAttribute("tenderQuotation", new TenderQuotation());
 		Integer tenderIdd = Integer.parseInt(tenderId);
 		Tender tender = sellerService.getTender(tenderIdd);
+		//TenderQuotation quotation=sellerService.getQuotation(tenderIdd);
 		model.addAttribute("tender", tender);
+		//model.addAttribute("tenderQuotation", quotation);
 		return "tenderQuotation";
 	}
 	
 	@RequestMapping(value="/submitQuotation", method=RequestMethod.POST)
 	public String submitTenderQuotation(@ModelAttribute("tenderQuotation")TenderQuotation tenderQuotation, 
 		      BindingResult result, Model model) {
+		Integer total = Integer.parseInt(tenderQuotation.getPrice());
+		
+		
+		
+		
 		sellerService.submitQuotation(tenderQuotation);
 		System.out.println("FINAL:::: ");
 		Buyer getBuyer = buyerMapper.getBuyer(tenderQuotation.getBuyerFk());
@@ -101,8 +116,7 @@ public class SellerController {
         }catch(Exception e){
         	System.out.println(e);
         }
-        System.out.println("SUCCESS::::::**** ");
-		return "";
+        return "redirect:tenderList.html";
 	}
 
 }

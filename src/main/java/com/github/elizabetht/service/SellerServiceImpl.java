@@ -14,6 +14,7 @@ import com.github.elizabetht.mappers.SellerMapper;
 import com.github.elizabetht.model.Seller;
 import com.github.elizabetht.model.Tender;
 import com.github.elizabetht.model.TenderQuotation;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
 /**
  * @author pragis
@@ -58,6 +59,13 @@ public class SellerServiceImpl implements SellerService {
 	public void submitQuotation(TenderQuotation tenderQuotation) {
 		sellerMapper.submitQuotation(tenderQuotation);
 		
+	}
+	public TenderQuotation getQuotation(int tenderId) {
+		System.out.println("IMPL:::::::::::::::: "+tenderId);
+		TenderQuotation quotation =  sellerMapper.getQuotation(tenderId);
+		System.out.println(sellerMapper.getQuotation(tenderId));
+		System.out.println("SUCCESS");
+		return quotation;
 	}
 
 }

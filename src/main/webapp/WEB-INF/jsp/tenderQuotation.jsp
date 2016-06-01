@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Student Enrollment Signup</title>
+<title>Tender Quotation</title>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
 <link href="datepicker/css/datepicker.css" rel="stylesheet" />
 <link href="assets/css/bootstrap-united.css" rel="stylesheet" />
@@ -55,32 +55,13 @@
 				<input type="text" class="form-control" placeholder="Search">
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/StudentEnrollmentWithMyBatis">Home</a></li>
-				<li class="active"><a href="signup.html">Signup</a></li>
-				<li><a href="login.html">Login</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Explore<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Contact us</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Further Actions</a></li>
-					</ul></li>
-			</ul>
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="admin.html">Admin</a></li>
+				<li><a href="buyer.html">Buyer</a></li>
+				<li><a href="sellerLogin.html">Seller</a></li>
 		</div>
 		<!-- /.nav-collapse -->
 	</div>
-
-	<script src="jquery-1.8.3.js">
-		
-	</script>
-
-	<script src="bootstrap/js/bootstrap.js">
-		
-	</script>
-
-	<script src="datepicker/js/bootstrap-datepicker.js">
-		
-	</script>
 
 	<div class="col-lg-6 col-lg-offset-3">
 		<div class="well">
@@ -113,6 +94,7 @@
 
 								<form:hidden path="buyerFk" value="${tender.getBuyerFk()}"/>
 								<form:hidden path="tenderFk" value="${tender.getTenderId()}"/>
+								
 								<div class="form-group">
 									<label for="productConfig" class="col-lg-3 control-label">Product Configuration</label>
 									<div class="col-lg-9">
@@ -125,15 +107,23 @@
 									<label for="price" class="col-lg-3 control-label">Price</label>
 									<div class="col-lg-9">
 										<form:input type="text" class="form-control" path="price"
-											id="price" placeholder="Price" />
+											id="price" placeholder="Price"/>
 										<form:errors path="price" cssClass="error" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="total" class="col-lg-3 control-label">Total</label>
+									<div class="col-lg-9">
+										<form:input type="text" class="form-control" path="totalPrice"
+											id="total" placeholder="Price" />
+										<form:errors path="totalPrice" cssClass="error" />
 									</div>
 								</div>
 
 								<div class="col-lg-9 col-lg-offset-3">
-									<button class="btn btn-default">Cancel</button>
+									<a href="tenderList.html" class="btn btn-default">Cancel</a>
 
-									<button class="btn btn-primary" type="submit">Submit</button>
+									<button class="btn btn-primary" type="submit" >Submit</button>
 									
 								</div>
 
@@ -144,7 +134,26 @@
 			</div>
 		</div>
 	</div>
+<script src="jquery-1.8.3.js">
+		
+	</script>
 
+	<script src="bootstrap/js/bootstrap.js">
+		
+	</script>
+
+	<script src="datepicker/js/bootstrap-datepicker.js">
+		
+	</script>
+	<script type="text/javascript">
+	$("document").ready(function(){
+		$("#price").keyup(function(){
+			var totalPrice = $("#quantity").val() * $("#price").val()
+			$("#total").val(totalPrice)
+		});
+	});
+	
+	</script>
 	
 
 </body>

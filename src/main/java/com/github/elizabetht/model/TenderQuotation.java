@@ -8,6 +8,7 @@ public class TenderQuotation {
 	private int tenderFk;
 	private int buyerFk;
 	private String price;
+	private int totalPrice;
 	private String productConfiguration;
 	private short isActive;
 	private Date rowCreated;
@@ -36,6 +37,12 @@ public class TenderQuotation {
 	}
 	public void setPrice(String price) {
 		this.price = price;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 	public String getProductConfiguration() {
 		return productConfiguration;

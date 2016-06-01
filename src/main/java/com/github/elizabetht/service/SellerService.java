@@ -14,5 +14,6 @@ public interface SellerService {
 	ArrayList<Seller> getAllSellers();
 	Tender getTender(int id);
 	void submitQuotation(TenderQuotation tenderQuotation);
+	TenderQuotation getQuotation(int tenderId);
 
 }

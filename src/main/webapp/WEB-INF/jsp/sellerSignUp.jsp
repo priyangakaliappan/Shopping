@@ -55,7 +55,11 @@
 				<input type="text" class="form-control" placeholder="Search">
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/StudentEnrollmentWithMyBatis">Home</a></li>
+			<li class="active"><a href="#">Home</a></li>
+				<li><a href="admin.html">Admin</a></li>
+				<li><a href="buyer.html">Buyer</a></li>
+				<li><a href="sellerLogin.html">Seller</a></li>
+				<!-- <li><a href="/StudentEnrollmentWithMyBatis">Home</a></li>
 				<li class="active"><a href="signup.html">Signup</a></li>
 				<li><a href="login.html">Login</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -64,7 +68,7 @@
 						<li><a href="#">Contact us</a></li>
 						<li class="divider"></li>
 						<li><a href="#">Further Actions</a></li>
-					</ul></li>
+					</ul></li> -->
 			</ul>
 		</div>
 		<!-- /.nav-collapse -->
@@ -162,7 +166,7 @@
 									<label for="phone" class="col-lg-3 control-label">Phone
 										Number</label>
 									<div class="col-lg-9">
-										<form:input type="email" class="form-control"
+										<form:input type="text" class="form-control"
 											path="phoneNumber" id="phone"
 											placeholder="Phone Number" />
 										<form:errors path="phoneNumber" cssClass="error" />

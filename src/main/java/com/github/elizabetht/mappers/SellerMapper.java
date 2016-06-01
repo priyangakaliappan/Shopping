@@ -28,8 +28,11 @@ public interface SellerMapper {
 	@Select("SELECT PRODUCT_NAME as productName,BUYER_FK as buyerFk,TENDER_ID as tenderId,REFERENCE_NO as referenceNo,PRODUCT_DESCRIPTION as productDescription,START_TIME as startTime,CLOSE_TIME as closeTime,QUANTITY as quantity,IS_ACTIVE as isActive,ROW_CREATED as rowCreated FROM tender where TENDER_ID = #{tenderId}")
 	public Tender getTender(int tenderId);
 	
-	@Insert("INSERT INTO tender_quotation(buyer_fk, tender_fk, price,product_configuration) VALUES(#{buyerFk},#{tenderFk},#{price},#{productConfiguration})")
+	@Insert("INSERT INTO tender_quotation(buyer_fk, tender_fk, price,product_configuration,total_price) VALUES(#{buyerFk},#{tenderFk},#{price},#{productConfiguration},#{totalPrice})")
 	@Options(useGeneratedKeys=true, keyProperty="tenderQuotationId", flushCache=true, keyColumn="tender_quotation_id")
 	public void submitQuotation(TenderQuotation addNew);
+	
+	@Select("SELECT TENDER_QUOTATION_ID as tenderQuotationId,BUYER_FK as buyerFk FROM tender_quotation where TENDER_FK = #{tenderId}")
+	public TenderQuotation getQuotation(int tenderId);
 	
 }
