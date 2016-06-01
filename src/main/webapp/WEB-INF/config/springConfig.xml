@@ -22,11 +22,18 @@
 	<property name="basename" value="jdbc" />
 </bean>
 
-<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
  <property name="driverClassName" value="org.postgresql.Driver" />
  <property name="url" value="jdbc:postgresql://localhost:5432/springMybatis" />
  <property name="username" value="postgres" />
  <property name="password" value="root" />
+</bean> -->
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	<property name="url" value="jdbc:mysql://localhost:3306/springMybatis" />
+	<property name="username" value="root" />
+	<property name="password" value="root" />
 </bean>
 
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
