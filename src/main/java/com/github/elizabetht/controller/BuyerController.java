@@ -8,21 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.spel.ast.Ternary;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.github.elizabetht.mappers.BuyerMapper;
 import com.github.elizabetht.model.Buyer;
 import com.github.elizabetht.model.Seller;
 import com.github.elizabetht.model.Tender;
+import com.github.elizabetht.model.TenderQuotation;
 import com.github.elizabetht.service.BuyerService;
 import com.github.elizabetht.service.SellerService;
 
@@ -39,6 +40,8 @@ public class BuyerController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	@Autowired
+	BuyerMapper mapper;
 	
 	@RequestMapping(value="/buyer", method=RequestMethod.GET)
 	public String buyer(Model model) {
@@ -62,6 +65,13 @@ public class BuyerController {
 			redirectAttributes.addFlashAttribute("message", "Invalid username/ password");
 			return "redirect:buyer.html";
 		}else{
+			System.out.println("::::ELSE:::::::::::::::::::::::");
+			Buyer currentBuyer = (Buyer) session.getAttribute("user");
+			int buyerId = currentBuyer.getBuyerId();
+			ArrayList<TenderQuotation> response = buyerService.getSellerResponse(buyerId);
+			model.addAttribute("sellerResponse", response);
+			request.setAttribute("buyerMapper", mapper);
+			System.out.println("::::::END:::::::::::");
 			return "buyer/tender";
 		}
 		
@@ -125,5 +135,28 @@ public class BuyerController {
 		model.addAttribute("message", "Saved tender detail");
 		return "buyer/addTender";
 	}
+	@RequestMapping(value="/viewTender", method=RequestMethod.GET)
+	public String viewTender(Model model, HttpSession session) {
+		Buyer currentBuyer = (Buyer) session.getAttribute("user");
+		int buyerId = currentBuyer.getBuyerId();
+		ArrayList<Tender> tenderList = buyerService.getTenderList(buyerId);
+		model.addAttribute("tenderList",tenderList);
+		return "buyer/viewTender";
+	}
 	
+	@RequestMapping(value="/tenderActions", method=RequestMethod.GET)
+	public String suspendTender(Model model, @RequestParam("tenderId") int tenderId, @RequestParam("refNo") int refNo, @RequestParam("value") int value, RedirectAttributes redirectAttributes) {
+		buyerService.tenderAction(tenderId,value);
+		if(value <= 0){
+			redirectAttributes.addFlashAttribute("message", "Tender '" +refNo +"' suspended");
+		}else{
+			redirectAttributes.addFlashAttribute("message", "Tender '" +refNo +"' activated");
+		}
+		return "redirect:viewTender.html";
+	}
+	@RequestMapping(value="/searchTender", method=RequestMethod.GET)
+	public @ResponseBody String searchTender() {
+		System.out.println("::::::::::::searchTender");
+		return "hai";
+	}
 }

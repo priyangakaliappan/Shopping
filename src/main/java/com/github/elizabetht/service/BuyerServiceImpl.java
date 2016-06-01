@@ -1,13 +1,15 @@
 package com.github.elizabetht.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.elizabetht.mappers.BuyerMapper;
 import com.github.elizabetht.model.Buyer;
-import com.github.elizabetht.model.Product;
 import com.github.elizabetht.model.Tender;
+import com.github.elizabetht.model.TenderQuotation;
 
 @Service("buyerService")
 public class BuyerServiceImpl implements BuyerService{
@@ -35,5 +37,26 @@ public class BuyerServiceImpl implements BuyerService{
 		buyerMapper.addTender(tender);
 	}
 	
+	public ArrayList<TenderQuotation> getSellerResponse(int buyerId) {
+		// TODO Auto-generated method stub
+		ArrayList<TenderQuotation> response = buyerMapper.getSellerResponse(buyerId);
+		return response;
+	}
+
+	public ArrayList<Tender> getTenderList(int buyerId) {
+		// TODO Auto-generated method stub
+		ArrayList<Tender> tenderList = buyerMapper.getTenderList(buyerId);
+		return tenderList;
+	}
 	
+	@Transactional
+	public void tenderAction(int tenderId, int value) {
+		// TODO Auto-generated method stub
+		if(value<=0){
+			buyerMapper.suspendTender(tenderId);
+		}else{
+			buyerMapper.activateTender(tenderId);
+		}
+	}
+
 }

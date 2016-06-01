@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Online Shopping</title>
- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<script src="jquery-1.8.3.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
    <style type="text/css">
    body {
 	background: #eee !important;	
@@ -75,6 +75,7 @@
       <form:input type="text" class="form-control" path="address" placeholder="Address" required=""  /><br>
       <form:input type="password" class="form-control" path="password" placeholder="Password" required="" id="password"/>      <br>
       <input type="password" class="form-control" name="confirmPassword" placeholder="confirmPassword" required="" id="confirmPassword"/>     
+     <br>
       <button class="btn btn-lg btn-primary" type="submit" onclick="return check()">Register</button>   
         <a href="buyer.html" class="btn btn-lg btn-primary" >Cancel</a>   
        
